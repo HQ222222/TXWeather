@@ -2,6 +2,7 @@ package com.tx.txweather.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,18 +34,13 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the  factory method to
- * create an instance of this fragment.
- */
 public class ChooseAreaFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     public static final int LEVEL_PROVINCE = 0;
     public static final int LEVEL_CITY = 1;
     public static final int LEVEL_COUNTY = 2;
+    public static final String API_URL = "http://47.94.144.190:8085/v1/api/China";
+    public static final String TAG = "请求接口的返回值";
 
     private ProgressBar mProgressBar;
 
@@ -57,7 +53,7 @@ public class ChooseAreaFragment extends Fragment {
     private List<City> mCityList;
     private List<County> mCountyList;
 
-    private Province selectedProvice;
+    private Province selectedProvince;
     private City selectedCity;
     private int currentLevel;
 
@@ -78,7 +74,7 @@ public class ChooseAreaFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id){
                 if (currentLevel == LEVEL_PROVINCE) {
-                    selectedProvice = mProvinceList.get(pos);
+                    selectedProvince = mProvinceList.get(pos);
                     queryCities();
                 } else if (currentLevel == LEVEL_CITY) {
                     selectedCity = mCityList.get(pos);
@@ -125,15 +121,14 @@ public class ChooseAreaFragment extends Fragment {
             mListView.setSelection(0);
             currentLevel = LEVEL_PROVINCE;
         } else {
-            String address = "http://guolin.tech/api/china";
-            queryFromServer(address, "province");
+            queryFromServer(API_URL, "province");
         }
     }
 
     private void queryCities() {
-        mTitleText.setText(selectedProvice.getProvinceName());
+        mTitleText.setText(selectedProvince.getProvinceName());
         mBackButton.setVisibility(View.VISIBLE);
-        mCityList = LitePal.where("provinceId = ?", String.valueOf(selectedProvice.getId())).find(City.class);
+        mCityList = LitePal.where("provinceId = ?", String.valueOf(selectedProvince.getId())).find(City.class);
         if (mCityList.size() > 0) {
             dataList.clear();
             for (City city : mCityList) {
@@ -143,9 +138,8 @@ public class ChooseAreaFragment extends Fragment {
             mListView.setSelection(0);
             currentLevel = LEVEL_CITY;
         } else {
-            int provinceCode = selectedProvice.getProvinceCode();
-            String address = "http://guolin.tech/api/china/" + provinceCode;
-            queryFromServer(address, "city");
+            int provinceCode = selectedProvince.getProvinceCode();
+            queryFromServer(API_URL+"/province/"+provinceCode, "city");
         }
 
     }
@@ -163,10 +157,8 @@ public class ChooseAreaFragment extends Fragment {
             mListView.setSelection(0);
             currentLevel = LEVEL_COUNTY;
         } else {
-            int provinceCode = selectedProvice.getProvinceCode();
             int cityCode = selectedCity.getCityCode();
-            String address = "http://guolin.tech/api/china/" + provinceCode + "/" + cityCode;
-            queryFromServer(address, "county");
+            queryFromServer(API_URL+"/city/"+cityCode, "county");
         }
     }
     private void queryFromServer(String address, final String type) {
@@ -174,12 +166,12 @@ public class ChooseAreaFragment extends Fragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String responseText = response.body().string();
-
+                Log.d(TAG, responseText);
                 boolean result = false;
                 if ("province".equals(type)) {
                     result = Utility.handleProvinceResponse(responseText);
                 } else if ("city".equals(type)) {
-                    result = Utility.handleCityResponse(responseText, selectedProvice.getId());
+                    result = Utility.handleCityResponse(responseText, selectedProvince.getId());
                 } else if ("county".equals(type)) {
                     result = Utility.handleCountyResponse(responseText, selectedCity.getId());
                 }
@@ -187,7 +179,6 @@ public class ChooseAreaFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            //closeProgressBar();
                             if ("province".equals(type)) {
                                 queryProvinces();
                             } else if ("city".equals(type)) {
@@ -202,11 +193,11 @@ public class ChooseAreaFragment extends Fragment {
 
             @Override
             public void onFailure(Call call, IOException e) {
+                Log.d("TAG", e.getMessage());
                 //通过
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //closeProgressBar();
                         Toast.makeText(getContext(), "加载失败", Toast.LENGTH_SHORT).show();
                     }
                 });
