@@ -5,51 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
-    android:background="@drawable/button_circle_shape">
-    <RelativeLayout
+
+    >
+    <!--<RelativeLayout
         android:layout_width="match_parent"
+        android:layout_alignParentLeft="true"
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/title_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
+            android:textColor="#fff"
             android:textSize="25sp"
             android:paddingTop="10dp"
-            android:paddingLeft="15dp"/>
+            android:paddingLeft="15dp"
+            />
 
-        <TextView
-            android:id="@+id/title_update_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp"
-            android:layout_alignParentRight="true"
-            android:paddingTop="10dp"/>
-    </RelativeLayout>
+
+    </RelativeLayout>-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <TextView
             android:id="@+id/degree_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
+            android:textColor="#fff"
             android:textSize="77sp"
-            android:layout_alignParentLeft="true"
-            android:paddingLeft="10dp"/>
-
+            android:layout_centerHorizontal="true"/>
         <TextView
             android:id="@+id/weather_info_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="#FFFFFF"
+            android:textColor="#fff"
             android:textSize="20sp"
-            android:layout_alignParentTop="true"/>
+            android:layout_toEndOf="@id/degree_text"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="60dp"/>
     </RelativeLayout>
+
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
