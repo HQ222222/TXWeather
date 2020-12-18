@@ -5,6 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+
     android:background="@drawable/button_circle_shape">
 
     <TextView
@@ -12,15 +16,29 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:text="预报"
+        android:text="未来五天天气"
         android:textColor="#303133"
         android:textSize="20sp"/>
 
+
+
+
+
+    <HorizontalScrollView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_vertical"
+          android:scrollbars="none" >
+
+
     <LinearLayout
         android:id="@+id/forecast_layout"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </LinearLayout>
+
+
+    </HorizontalScrollView>
 
 </LinearLayout>
