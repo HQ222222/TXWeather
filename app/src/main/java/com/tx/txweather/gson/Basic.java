@@ -1,20 +1,19 @@
 package com.tx.txweather.gson;
 
-import com.google.gson.annotations.SerializedName;
 
 public class Basic {
-    @SerializedName("city")
-    public String cityName;
-    @SerializedName("id")
+    public String countyName;
     public String weatherId;
+    public String provinceName;
+    public String cityName;
 
-    public Update update;
-
-    public class Update {
-
-        @SerializedName("loc")
-        public String updateTime;
-
+    @Override
+    public String toString() {
+        return "Basic{" +
+                "countyName='" + countyName + '\'' +
+                ", weatherId='" + weatherId + '\'' +
+                ", provinceName='" + provinceName + '\'' +
+                ", cityName='" + cityName + '\'' +
+                '}';
     }
-
 }

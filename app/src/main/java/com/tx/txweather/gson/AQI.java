@@ -2,14 +2,8 @@ package com.tx.txweather.gson;
 
 public class AQI {
 
-    public AQICity city;
+    public String aqi;
 
-    public class AQICity {
-
-        public String aqi;
-
-        public String pm25;
-
-    }
+    public String pm25;
 
 }

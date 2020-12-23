@@ -81,6 +81,7 @@ public class ChooseAreaFragment extends Fragment {
                     queryCounties();
                 }else if (currentLevel == LEVEL_COUNTY) {
                     String weatherId = mCountyList.get(pos).getWeatherId();
+                    Log.d(TAG, "选择的weatherId-->"+weatherId);
                     if (getActivity() instanceof MainActivity) {
                         Intent intent = new Intent(getActivity(), WeatherActivity.class);
                         intent.putExtra("weather_id", weatherId);
@@ -162,7 +163,7 @@ public class ChooseAreaFragment extends Fragment {
         }
     }
     private void queryFromServer(String address, final String type) {
-        HttpUtil.sendOkHttpRequest(address, new okhttp3.Callback() {
+        HttpUtil.getSync(address, new okhttp3.Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String responseText = response.body().string();
