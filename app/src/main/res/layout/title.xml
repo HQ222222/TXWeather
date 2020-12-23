@@ -1,35 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize">
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
 
     <Button
-        android:id="@+id/nav_button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="10dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:background="@drawable/xuanxiang"/>
+            android:id="@+id/nav_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/xuanxiang" />
 
 
     <ImageView
-        android:layout_width="50px"
-        android:layout_height="55px"
-        android:background="@drawable/weizhi"
-        android:paddingTop="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="115dp"/>
+            android:layout_width="50px"
+            android:layout_height="55px"
+            android:layout_marginLeft="115dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/weizhi"
+            android:paddingTop="10dp" />
 
     <TextView
-        android:id="@+id/title_city"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
-        android:layout_marginLeft="140dp"
-
-        android:paddingTop="10dp"
-        android:paddingLeft="15dp"
-        />
+            android:id="@+id/title_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="140dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
 </RelativeLayout>

@@ -30,6 +30,8 @@ import com.tx.txweather.utils.HttpUtil;
 import com.tx.txweather.utils.Utility;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -126,6 +128,9 @@ public class WeatherActivity extends AppCompatActivity {
         }
     }
 
+    SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat sdw = new SimpleDateFormat("MM月dd日");
+
     private void showWeatherInfo(Weather weather) {
         String cityName = weather.basic.cityName;
         String updateTime = weather.basic.update.updateTime.split(" ")[1];
@@ -142,6 +147,11 @@ public class WeatherActivity extends AppCompatActivity {
             TextView infoText = (TextView) view.findViewById(R.id.info_text);
             TextView maxText = (TextView) view.findViewById(R.id.max_text);
             TextView minText = (TextView) view.findViewById(R.id.min_text);
+            try {
+                forecast.date = sdw.format(sd.parse(forecast.date));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             dateText.setText(forecast.date);
             infoText.setText(forecast.more.info);
             maxText.setText(forecast.temperature.max+"℃");
