@@ -25,27 +25,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/suggestion_layout"
                 android:orientation="vertical"
+                android:layout_marginBottom="10dp"
                 />
-<!--        <TextView-->
-<!--                android:id="@+id/comfort_text"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="15dp"-->
-<!--                android:textColor="#303133" />-->
-
-<!--        <TextView-->
-<!--                android:id="@+id/car_wash_text"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="15dp"-->
-<!--                android:textColor="#303133" />-->
-
-<!--        <TextView-->
-<!--                android:id="@+id/sport_text"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="15dp"-->
-<!--                android:textColor="#303133" />-->
 
     </LinearLayout>
 
