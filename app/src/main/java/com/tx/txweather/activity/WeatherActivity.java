@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -57,6 +58,13 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView pm25Text;
     private ImageView bingPicImg;
     private String mWeatherId;
+    private TextView mTvWindSpeed;
+    private TextView mTvHumidity;
+    private TextView mTvVisibility;
+    private TextView mTvCloud;
+    private TextView mTvPrecipitation;
+    private TextView mTvPressure;
+    private TextView mTvWindDirection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,19 +76,26 @@ public class WeatherActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
         setContentView(R.layout.activity_weather);
-        bingPicImg = (ImageView) findViewById(R.id.bing_pic_img);
-        weatherLayout = (ScrollView) findViewById(R.id.weather_layout);
-        titleCity = (TextView) findViewById(R.id.title_city);
-        degreeText = (TextView) findViewById(R.id.degree_text);
-        weatherInfoText = (TextView) findViewById(R.id.weather_info_text);
-        forecastLayout = (LinearLayout) findViewById(R.id.forecast_layout);
+        bingPicImg = findViewById(R.id.bing_pic_img);
+        weatherLayout = findViewById(R.id.weather_layout);
+        titleCity = findViewById(R.id.title_city);
+        degreeText = findViewById(R.id.degree_text);
+        weatherInfoText = findViewById(R.id.weather_info_text);
+        forecastLayout = findViewById(R.id.forecast_layout);
         suggestionLayout = findViewById(R.id.suggestion_layout);
-        aqiText = (TextView) findViewById(R.id.aqi_text);
-        pm25Text = (TextView) findViewById(R.id.pm25_text);
-        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        aqiText = findViewById(R.id.aqi_text);
+        pm25Text = findViewById(R.id.pm25_text);
+        swipeRefresh = findViewById(R.id.swipe_refresh);
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navButton = (Button) findViewById(R.id.nav_button);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navButton = findViewById(R.id.nav_button);
+        mTvWindSpeed = findViewById(R.id.tv_wind_speed);
+        mTvHumidity = findViewById(R.id.tv_humidity);
+        mTvVisibility = findViewById(R.id.tv_visibility);
+        mTvCloud = findViewById(R.id.tv_cloud);
+        mTvPrecipitation = findViewById(R.id.tv_precipitation);
+        mTvPressure = findViewById(R.id.tv_pressure);
+        mTvWindDirection = findViewById(R.id.tv_wind_direction);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String weatherString = prefs.getString("weather", null);
         if (weatherString != null) {
@@ -111,9 +126,18 @@ public class WeatherActivity extends AppCompatActivity {
         String cityName = weather.basic.cityName;
         String degree = weather.now.temperature + "℃";
         String weatherInfo = weather.now.info;
+        Log.d("weather", "showWeatherInfo:-->"+weather);
         titleCity.setText(cityName);
         degreeText.setText(degree);
         weatherInfoText.setText(weatherInfo);
+        Now now = weather.now;
+        mTvWindDirection.setText(now.windDir+now.windScale+"级");
+        mTvWindSpeed.setText(now.windSpeed+"km/h");
+        mTvHumidity.setText(now.humidity+"%");
+        mTvVisibility.setText(now.visibility+"km");
+        mTvCloud.setText(now.cloud+"%");
+        mTvPrecipitation.setText(now.precipitation+"mm");
+        mTvPressure.setText(now.pressure+"hPa");
         forecastLayout.removeAllViews();
         for (Forecast forecast : weather.forecastList) {
             View view = LayoutInflater.from(this).inflate(R.layout.forecast_item, forecastLayout, false);
