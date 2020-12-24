@@ -65,6 +65,8 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView mTvPrecipitation;
     private TextView mTvPressure;
     private TextView mTvWindDirection;
+    private TextView mTvUpdateTime;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +98,7 @@ public class WeatherActivity extends AppCompatActivity {
         mTvPrecipitation = findViewById(R.id.tv_precipitation);
         mTvPressure = findViewById(R.id.tv_pressure);
         mTvWindDirection = findViewById(R.id.tv_wind_direction);
+        mTvUpdateTime = findViewById(R.id.tv_update_time);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String weatherString = prefs.getString("weather", null);
         if (weatherString != null) {
@@ -138,6 +141,7 @@ public class WeatherActivity extends AppCompatActivity {
         mTvCloud.setText(now.cloud+"%");
         mTvPrecipitation.setText(now.precipitation+"mm");
         mTvPressure.setText(now.pressure+"hPa");
+        mTvUpdateTime.setText(now.updateTime);
         forecastLayout.removeAllViews();
         for (Forecast forecast : weather.forecastList) {
             View view = LayoutInflater.from(this).inflate(R.layout.forecast_item, forecastLayout, false);

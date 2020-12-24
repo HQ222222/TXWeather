@@ -2,6 +2,8 @@ package com.tx.txweather.gson;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 public class Now {
 
     public String temperature;
@@ -24,6 +26,8 @@ public class Now {
 
     public String cloud;
 
+    public String updateTime;
+
     @Override
     public String toString() {
         return "Now{" +
@@ -37,6 +41,7 @@ public class Now {
                 ", pressure='" + pressure + '\'' +
                 ", visibility='" + visibility + '\'' +
                 ", cloud='" + cloud + '\'' +
+                ", updateTime='" + updateTime + '\'' +
                 '}';
     }
 }

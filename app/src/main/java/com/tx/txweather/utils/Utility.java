@@ -1,6 +1,7 @@
 package com.tx.txweather.utils;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
