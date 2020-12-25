@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tx.txweather">
+        package="com.tx.txweather">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="org.litepal.LitePalApplication"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+            android:name="org.litepal.LitePalApplication"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            android:usesCleartextTraffic="true">
         <service
-            android:name="com.tx.txweather.service.AutoUpdateService"
-            android:enabled="true"
-            android:exported="true"></service>
+                android:name="com.tx.txweather.service.AutoUpdateService"
+                android:enabled="true"
+                android:exported="true"></service>
 
-        <activity android:name="com.tx.txweather.activity.WeatherActivity" >
-        </activity>
+        <activity android:name="com.tx.txweather.activity.WeatherActivity"></activity>
         <activity android:name="com.tx.txweather.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

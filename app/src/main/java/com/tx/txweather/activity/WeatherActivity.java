@@ -126,7 +126,7 @@ public class WeatherActivity extends AppCompatActivity {
     SimpleDateFormat sdw = new SimpleDateFormat("MM月dd日");
 
     private void showWeatherInfo(Weather weather) {
-        String cityName = weather.basic.cityName;
+        String cityName = weather.basic.countyName;
         String degree = weather.now.temperature + "℃";
         String weatherInfo = weather.now.info;
         Log.d("weather", "showWeatherInfo:-->"+weather);
